@@ -10,11 +10,6 @@
 import cookie from "cookie"
 import jwt from "jsonwebtoken"
 
-//  these are here so the return values are easier to understand
-const deny = {
-    isAuthorized: false
-}
-
 //  I really like how Rust does error handling, so I made my own way to do it
 //  for fun (and I think it looks nicer than try/catch)
 const safe = f => {
@@ -30,6 +25,19 @@ const Err = (obj) => obj instanceof Error
 export const handler = async (event) => {
     const cookies = cookie.parse(event.headers.cookie)
 
+    //  Create these in the handler so they use event specific information
+    const deny = {
+        isAuthorized: false,
+        context: {
+        }
+    }
+    const allow = {
+        isAuthorized: true,
+        context: {
+            extra: "wat",
+        }
+    }
+
     //  if no cookie, deny access
     if (cookies.obol === undefined) {
         return deny
@@ -44,11 +52,10 @@ export const handler = async (event) => {
     if (token.clientID !== event.stageVariables.clientID) {
         return deny
     }
+    // console.log(event.pathParameters)
+    // if (event.pathParameters.info !== event.stageVariables.clientID) {
+    //     return deny
+    // }
 
-    return {
-        isAuthorized: true,
-        context: {
-            userID: token.userID,
-        }
-    }
+    return allow
 }

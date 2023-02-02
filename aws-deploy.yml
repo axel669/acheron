@@ -1,0 +1,60 @@
+profile: default
+region: us-west-1
+prefix: acheron_
+
+tags:
+  user: axel669
+  project: Acheron
+
+functions:
+  auth:
+    name: cerberus
+    dir: cerberus
+    runtime: nodejs16.x
+    memory: 128
+    timeout: 3
+  auth-path:
+    name: cerberus-path
+    dir: cerberus-path
+    runtime: nodejs16.x
+    memory: 128
+    timeout: 3
+  user:
+    name: cerberus-user
+    dir: cerberus-user
+    runtime: nodejs16.x
+    memory: 128
+    timeout: 3
+  login:
+    name: charon
+    dir: charon
+    runtime: nodejs16.x
+    memory: 128
+    timeout: 3
+  login0:
+    name: charon0
+    dir: charon0
+    runtime: nodejs16.x
+    memory: 128
+    timeout: 3
+  login-code:
+    name: charon-code
+    dir: charon-code
+    runtime: nodejs16.x
+    memory: 128
+    timeout: 3
+  logout:
+    name: charon-revoke
+    dir: charon-revoke
+    runtime: nodejs16.x
+    memory: 128
+    timeout: 3
+
+deployment:
+  resources:
+    - "lambda:auth"
+    - "lambda:auth0"
+    - "lambda:auth-path"
+    - "lambda:user"
+    - "lambda:login"
+    - "lambda:logout"

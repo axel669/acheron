@@ -1,0 +1,24 @@
+{
+  "name": "acheron",
+  "version": "1.0.0",
+  "description": "Collection of lambdas for doing auth with api gateway",
+  "main": "index.js",
+  "scripts": {
+    "setup": "aws-deploy - setup",
+    "deploy": "cross-env version=v1.0.0 aws-deploy - deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axel669/acheron.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/axel669/acheron/issues"
+  },
+  "homepage": "https://github.com/axel669/acheron#readme",
+  "dependencies": {
+    "@axel669/aws-deploy": "^0.3.5",
+    "cross-env": "^7.0.3"
+  }
+}
